@@ -18,7 +18,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /* font-size: calc(10px + 2vmin); */
   color: white;
   margin-bottom: 2rem;
 }
@@ -41,10 +41,11 @@ main {
 /* Dashboard layout: place profile and repos side-by-side on wide screens */
 .dashboard {
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
   align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
+  width: 111%;
 }
 
 /* Make the profile column narrower and repos take more width */
@@ -102,7 +103,7 @@ button:disabled {
 }
 
 .github-repos {
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;

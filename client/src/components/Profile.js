@@ -9,6 +9,7 @@ function Profile({ user, onLogout }) {
 
   useEffect(() => {
     fetchProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchProfile = async () => {
@@ -23,11 +24,24 @@ function Profile({ user, onLogout }) {
     }
   };
 
+  const validateEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
     setMessage('');
+
+    if (!profile.name?.trim()) {
+      setError('Name is required.');
+      setLoading(false);
+      return;
+    }
+    if (profile.email && !validateEmail(profile.email)) {
+      setError('Please enter a valid email address.');
+      setLoading(false);
+      return;
+    }
 
     try {
       const token = localStorage.getItem('token');
@@ -52,7 +66,7 @@ function Profile({ user, onLogout }) {
           <label>Name:</label>
           <input
             type="text"
-            value={profile.name}
+            value={profile.name || ''}
             onChange={(e) => setProfile({ ...profile, name: e.target.value })}
           />
         </div>
@@ -60,7 +74,7 @@ function Profile({ user, onLogout }) {
           <label>Email:</label>
           <input
             type="email"
-            value={profile.email}
+            value={profile.email || ''}
             onChange={(e) => setProfile({ ...profile, email: e.target.value })}
           />
         </div>
@@ -68,7 +82,7 @@ function Profile({ user, onLogout }) {
           <label>GitHub Username:</label>
           <input
             type="text"
-            value={profile.githubUsername}
+            value={profile.githubUsername || ''}
             onChange={(e) => setProfile({ ...profile, githubUsername: e.target.value })}
           />
         </div>
