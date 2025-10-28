@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "path": "server"
+    },
+    {
+      "path": "client"
+    }
+  ],
+  "settings": {},
+  "name": "user-profile-manager"
+}
